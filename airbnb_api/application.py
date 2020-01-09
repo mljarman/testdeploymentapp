@@ -13,7 +13,7 @@ load_dotenv()
 
 # create app:
 def create_app():
-    APP = Flask(__name__)
+    application = APP = Flask(__name__)
 
     # load pipeline pickle:
     pipeline1 = load('airbnb_api/test2_regression.pkl')
@@ -57,6 +57,8 @@ def create_app():
         # Convert data into DataFrame:
         df = pd.DataFrame(listings, index=[1])
         # df.bag_of_words = get_lemmas(df.bag_of_words.iloc[0])
+
+        print(df)
 
         # Make prediction for optimal price:
         prediction = pipeline1.predict(df.iloc[0:1])
