@@ -5,6 +5,7 @@ import pandas as pd
 import pickle
 from joblib import load
 import xgboost as xgb
+import sys
 
 # local import:
 # from .api_function import get_lemmas
@@ -59,6 +60,7 @@ def create_app():
         # df.bag_of_words = get_lemmas(df.bag_of_words.iloc[0])
 
         print(df)
+        sys.stdout.flush()
 
         # Make prediction for optimal price:
         prediction = pipeline1.predict(df.iloc[0:1])
