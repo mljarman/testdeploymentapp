@@ -12,7 +12,6 @@ gunicorn = "*"
 numpy = "*"
 sklearn = "*"
 spacy = "*"
-xgboost = "*"
 python-dotenv = "*"
 
 [requires]
