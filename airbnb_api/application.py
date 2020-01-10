@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pickle
 from joblib import load
-# import xgboost as xgb
+
 
 
 # local import:
@@ -30,34 +30,37 @@ def create_app():
         # Receive data:
         listings = request.get_json(force=True)
 
+        features = ['accommodates', 'bathrooms', 'bedrooms', 'size', 'room_type',
+                    'bed_type', 'minimum_nights', 'instant_bookable', 'cancellation_policy',
+                    'bag_of_words']
         # Features used in predictive model:
-        accommodates = listings["accommodates"]
-        bathrooms = listings["bathrooms"]
-        bedrooms = listings["bedrooms"]
-        size = 75.02
-        room_type = listings["room_type"]
-        bed_type = listings["bed_type"]
-        minimum_nights = listings["minimum_nights"]
-        instant_bookable = listings["instant_bookable"]
-        cancellation_policy = listings["cancellation_policy"]
-        bag_of_words = listings["bag_of_words"]
+        # accommodates = listings["accommodates"]
+        # bathrooms = listings["bathrooms"]
+        # bedrooms = listings["bedrooms"]
+        # size = 75.02
+        # room_type = listings["room_type"]
+        # bed_type = listings["bed_type"]
+        # minimum_nights = listings["minimum_nights"]
+        # instant_bookable = listings["instant_bookable"]
+        # cancellation_policy = listings["cancellation_policy"]
+        # bag_of_words = listings["bag_of_words"]
 
 
 
-        features = {'accommodates': accommodates,
-        'bathrooms': bathrooms,
-        'bedrooms': bedrooms,
-        'size': size,
-        'room_type': room_type,
-        'bed_type': bed_type,
-        'minimum_nights': minimum_nights,
-        'instant_bookable': instant_bookable,
-        'cancellation_policy': cancellation_policy,
-        'bag_of_words': bag_of_words}
+        # features = {'accommodates': accommodates,
+        # 'bathrooms': bathrooms,
+        # 'bedrooms': bedrooms,
+        # 'size': size,
+        # 'room_type': room_type,
+        # 'bed_type': bed_type,
+        # 'minimum_nights': minimum_nights,
+        # 'instant_bookable': instant_bookable,
+        # 'cancellation_policy': cancellation_policy,
+        # 'bag_of_words': bag_of_words}
 
 
         # Convert data into DataFrame:
-        df = pd.DataFrame(features, index=[1])
+        df = pd.DataFrame(listings, index=[1])
         # df.bag_of_words = get_lemmas(df.bag_of_words.iloc[0])
 
 
