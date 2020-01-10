@@ -5,6 +5,8 @@ import pandas as pd
 import pickle
 from joblib import load
 import xgboost
+from flask_cors import CORS
+from flask_cors import cross_origin
 
 
 
@@ -16,12 +18,14 @@ load_dotenv()
 # create app:
 def create_app():
     APP = Flask(__name__)
+    CORS(APP)
 
     # load pipeline pickle:
     pipeline1 = load('airbnb_api/test2_regression.pkl')
 
 
     @APP.route('/', methods=['POST'])
+    @cross_origin()
     def prediction():
         """
         Receives data in JSON format, creates dataframe with data,
