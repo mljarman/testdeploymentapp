@@ -73,6 +73,6 @@ def create_app():
         output = {'results': int(prediction[0])}
 
         # Return JSON object:
-        return jsonify(prediction)
+        return jsonify(output)
 
     return APP
