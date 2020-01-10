@@ -35,10 +35,7 @@ def create_app():
         # Receive data:
         listings = request.get_json(force=True)
 
-        # features = ['accommodates', 'bathrooms', 'bedrooms', 'size', 'room_type',
-        #             'bed_type', 'minimum_nights', 'instant_bookable', 'cancellation_policy',
-        #             'bag_of_words']
-        # Features used in predictive model:
+
         accommodates = listings["accommodates"]
         bathrooms = listings["bathrooms"]
         bedrooms = listings["bedrooms"]
@@ -63,18 +60,19 @@ def create_app():
         'cancellation_policy': cancellation_policy,
         'bag_of_words': bag_of_words}
 
-
+        print(features)
         # Convert data into DataFrame:
         df = pd.DataFrame(features, index=[1])
         # df.bag_of_words = get_lemmas(df.bag_of_words.iloc[0])
+        print(df)
 
-
+        print(pipeline1.named_steps)
         # Make prediction for optimal price:
         prediction = pipeline1.predict(df.iloc[0:1])
-        # prediction = pipeline1.predict(df.iloc[0:1])
+
         output = {'results': int(prediction[0])}
 
         # Return JSON object:
-        return jsonify(output)
+        return jsonify(prediction)
 
     return APP
