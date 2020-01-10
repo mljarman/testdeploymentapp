@@ -4,14 +4,13 @@ import numpy as np
 import pandas as pd
 import pickle
 from joblib import load
-import xgboost
 from flask_cors import CORS
 from flask_cors import cross_origin
 
 
 
 # local import:
-# from .api_function import get_lemmas
+from .api_function import get_lemmas
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -62,13 +61,11 @@ def create_app():
 
         # Convert data into DataFrame:
         df = pd.DataFrame(listings, index=[1])
-        # df.bag_of_words = get_lemmas(df.bag_of_words.iloc[0])
+        df.bag_of_words = get_lemmas(df.bag_of_words.iloc[0])
 
         # Make prediction for optimal price:
         prediction = pipeline1.predict(df.iloc[0:1])
         output = float(prediction[0])
-
-        # output = {'results': int(prediction[0])}
 
         # Return JSON object:
         return jsonify(int(output))
