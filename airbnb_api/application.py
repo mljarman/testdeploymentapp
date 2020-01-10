@@ -21,7 +21,7 @@ def create_app():
     CORS(APP)
 
     # load pipeline pickle:
-    pipeline1 = load('airbnb_api/test2_regression.pkl')
+    pipeline1 = load('airbnb_api/test3_regression.pkl')
 
 
     @APP.route('/', methods=['POST'])
@@ -60,13 +60,10 @@ def create_app():
         'cancellation_policy': cancellation_policy,
         'bag_of_words': bag_of_words}
 
-        print(features)
         # Convert data into DataFrame:
         df = pd.DataFrame(features, index=[1])
         # df.bag_of_words = get_lemmas(df.bag_of_words.iloc[0])
-        print(df)
 
-        print(pipeline1.named_steps)
         # Make prediction for optimal price:
         prediction = pipeline1.predict(df.iloc[0:1])
 
