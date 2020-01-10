@@ -34,7 +34,7 @@ def create_app():
         accommodates = listings["accommodates"]
         bathrooms = listings["bathrooms"]
         bedrooms = listings["bedrooms"]
-        size = ["size"]
+        size = 75.02
         room_type = listings["room_type"]
         bed_type = listings["bed_type"]
         minimum_nights = listings["minimum_nights"]
@@ -57,7 +57,7 @@ def create_app():
 
 
         # Convert data into DataFrame:
-        df = pd.DataFrame(listings, index=[1])
+        df = pd.DataFrame(features, index=[1])
         # df.bag_of_words = get_lemmas(df.bag_of_words.iloc[0])
 
 
