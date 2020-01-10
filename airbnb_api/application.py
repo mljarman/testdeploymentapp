@@ -61,15 +61,16 @@ def create_app():
         'bag_of_words': bag_of_words}
 
         # Convert data into DataFrame:
-        df = pd.DataFrame(features, index=[1])
+        df = pd.DataFrame(listings, index=[1])
         # df.bag_of_words = get_lemmas(df.bag_of_words.iloc[0])
 
         # Make prediction for optimal price:
         prediction = pipeline1.predict(df.iloc[0:1])
+        output = float(prediction[0])
 
-        output = {'results': int(prediction[0])}
+        # output = {'results': int(prediction[0])}
 
         # Return JSON object:
-        return jsonify(output)
+        return jsonify(int(output))
 
     return APP
